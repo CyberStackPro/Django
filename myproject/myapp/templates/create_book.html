@@ -1,0 +1,45 @@
+{# myapp/templates/create_book.html #}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Create a Book</title>
+  </head>
+  <body>
+    <h1>Create a New Book</h1>
+    <form method="post">
+      {% csrf_token %}
+      <div>
+        {{ form.title.errors }} {# Display any errors for this field #}
+        <label for="{{ form.title.id_for_label }}"
+          >{{ form.title.label }}</label
+        >
+        {{ form.title }} {% if form.title.help_text %}
+        <small>{{ form.title.help_text }}</small>
+        {% endif %}
+      </div>
+      <div>
+        {{ form.author.errors }}
+        <label for="{{ form.author.id_for_label }}"
+          >{{ form.author.label }}</label
+        >
+        {{ form.author }}
+      </div>
+      <div>
+        {{ form.publication_date.errors }}
+        <label for="{{ form.publication_date.id_for_label }}"
+          >{{ form.publication_date.label }}</label
+        >
+        {{ form.publication_date }} {% if form.publication_date.help_text %}
+        <small>{{ form.publication_date.help_text }}</small>
+        {% endif %}
+      </div>
+      {# Render other fields similarly #}
+      <div>
+        {{ form.genres.errors }}
+        <label>{{ form.genres.label }}</label>
+        {{ form.genres }}
+      </div>
+      <button type="submit">Create Book</button>
+    </form>
+  </body>
+</html>
